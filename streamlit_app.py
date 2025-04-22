@@ -33,10 +33,16 @@ if uploaded_files:
                 "transcription": resp
             })
 
+
     st.subheader("Transcriptions")
     for t in transcriptions:
-        st.markdown(f"**{t['file_name']}**")
-        st.text_area("Transcript", t["transcription"], height=150)
+        with st.expander(f"📄 {t['file_name']} - View Transcription"):
+            st.text_area("Transcript", t["transcription"], height=150, key=t["id"])
+
+    # st.subheader("Transcriptions")
+    # for t in transcriptions:
+    #     st.markdown(f"**{t['file_name']}**")
+    #     st.text_area("Transcript", t["transcription"], height=150)
 
     question = st.text_input("❓ Ask a question about these transcripts")
     if question:
